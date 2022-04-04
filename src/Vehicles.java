@@ -6,7 +6,7 @@ public class Vehicles extends Animals{
 
     private static ArrayList<String> vehicleList = new ArrayList<>(Arrays.asList("Compact", "Mid-size", "Truck", "SUV"));
     private static int[] trailerSizeList = new int[]{2,4};
-    private boolean hasTrailer = random.nextBoolean();
+    private boolean hasTrailer;
     public static int trailer2Count=0;
     public static int getTrailer4Count=0;
     public static int compactCount=0;
@@ -19,7 +19,7 @@ public class Vehicles extends Animals{
 
     public void getVehicle() {
         String vehicle = vehicleList.get(new Random().nextInt(vehicleList.size()));
-        System.out.println(vehicle);
+        System.out.println(vehicle+"\n");
         if (vehicle == "Compact") {
             compactCount++;
             for (int i=0; i < 2;i++){
@@ -34,10 +34,11 @@ public class Vehicles extends Animals{
         }
         if (vehicle == "Truck") {
             truckCount++;
+            hasTrailer = random.nextBoolean();
             if (hasTrailer) {
                 int t = random.nextInt(2);
                 int trailerSize = trailerSizeList[t];
-                System.out.println("Trailer size: " + trailerSize);
+                System.out.println("Trailer size: " + trailerSize+"\n");
                 if (trailerSize == 2) {
                     trailer2Count++;
                     for (int i = 0; i < 2; i++) {
@@ -62,10 +63,11 @@ public class Vehicles extends Animals{
         }
         if (vehicle == "SUV") {
             suvCount++;
+            hasTrailer = random.nextBoolean();
             if (hasTrailer) {
                 int t = random.nextInt(2);
                 int trailerSize = trailerSizeList[t];
-                System.out.println("Trailer size: " + trailerSize);
+                System.out.println("Trailer size: " + trailerSize+"\n");
                 if (trailerSize == 2) {
                     trailer2Count++;
                     for (int i = 0; i < 2; i++) {
@@ -90,4 +92,5 @@ public class Vehicles extends Animals{
         }
         vehicleCount++;
     }
+
 }

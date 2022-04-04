@@ -4,23 +4,24 @@ import java.util.Random;
 public class Caravans extends Vehicles {
 
     public ArrayList<ArrayList<String>> CaravanLists = new ArrayList<>();
-    private ArrayList<String> Caravan1 = new ArrayList<>();
+   /* private ArrayList<String> Caravan1 = new ArrayList<>();
     private ArrayList<String> Caravan2 = new ArrayList<>();
-    private ArrayList<String> Caravan3 = new ArrayList<>();
+    private ArrayList<String> Caravan3 = new ArrayList<>();*/
     public static int totlCrvnCnt;
     public static int crvnFailCnt;
 
-    public void addCaravan() {
-        if (CaravanLists.size() == 2) {
-            throw new ArithmeticException("You've reached the caravan limit!");
+    public void addCaravan() throws CaravanException {
+        if (CaravanLists.size() == 3)  {
+            throw new CaravanException("You already have " + CaravanLists.size() + " caravans.");
         }
         else {
-            CaravanLists.add(new ArrayList<String>());
+            CaravanLists.add(new ArrayList<>());
             totlCrvnCnt++;
             System.out.println("Caravan created! You now have " + CaravanLists.size() + " caravans.");
         }
     }
     class Routes {
+
             Random rando = new Random(); //initializing the "rando" variable with random class
             private float passRate = rando.nextFloat();
             private float failRate = (1-passRate);
@@ -53,6 +54,11 @@ public class Caravans extends Vehicles {
             }
         }
 
+        }
+        public class CaravanException extends Exception {
+            CaravanException (String message) {
+                super(message);
+            }
         }
     }
 

@@ -3,13 +3,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Animals {
-    static Random random = new Random();
+    Random random = new Random();
     public AnimalsInfo animalsInfo = new AnimalsInfo();
     private ArrayList<String> animalList = new ArrayList<>(Arrays.asList("Dog", "Cat"));
     private String[] lastTime = new String[]{"Morning", "Afternoon", "Evening", "Night", "Previous day"};
-    private boolean hasHay = random.nextBoolean();
-    private boolean hasLeash = random.nextBoolean();
-    private boolean hasLitter = random.nextBoolean();
     public static int animalCount = 0;
     public static int dogCount = 0;
     public static int catCount = 0;
@@ -20,6 +17,7 @@ public class Animals {
         horseCount++;
         System.out.println("Horse");
         System.out.println(animalsInfo);
+        boolean hasHay = random.nextBoolean();
         System.out.println("Has hay?: " + hasHay+"\n");
 
     }
@@ -31,16 +29,20 @@ public class Animals {
         System.out.println(animalsInfo);
         if (animalList.get(a) == "Dog") {
             dogCount++;
+            boolean hasLeash = random.nextBoolean();
             System.out.println("Has leash?: " + hasLeash);
             int l = new Random().nextInt(4);
             System.out.println("Last potty break was: " + lastTime[l]+"\n");
         }
         else if (animalList.get(a) == "Cat") {
             catCount++;
-            System.out.println("Has litter?: " + hasLitter+"\n");
+            boolean hasLitter = random.nextBoolean();
             if (hasLitter) {
                 int l = new Random().nextInt(4);
+                System.out.println("Has litter?: " + hasLitter);
                 System.out.println("Last litter box cleaning: " + lastTime[l]+"\n");
+            } else {
+                System.out.println("Has litter?: " + hasLitter+"\n");
             }
         }
 
@@ -64,7 +66,7 @@ public class Animals {
         }
 
         public String toString() {
-            return ("Name: " + randomName() + "\nOwner: " + randomName() + "\nID: " + iD + "\nWeight: " + weight + " lbs");
+            return ("Name: " + randomName() + "\t\tOwner: " + randomName() + "\t\tID: " + iD + "\t\tWeight: " + weight + " (lbs)");
         }
     }
 }
