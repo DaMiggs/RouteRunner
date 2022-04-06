@@ -13,7 +13,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class RouteRunner extends Caravans {
+public class RouteRunner extends Routes {
 
     public static Scanner scan = new Scanner(System.in);
     static String name;
@@ -47,6 +47,7 @@ public class RouteRunner extends Caravans {
                 case 2 -> endProgram();
             }
         }
+
         System.out.println("Hey " + name + "! The first new vehicle just pulled up.\nWhat do you want to do with it?\n");
         while (begin) {
             System.out.println("1: See new vehicle.\n2: Add to caravan.\n3: Send Caravan\n4: End Day\n5: Quit game.\n");
@@ -65,8 +66,12 @@ public class RouteRunner extends Caravans {
                     }
                     break;
                 case 3:
+                    try {
 
-                    caravans.sendIt();
+                        sendIt();
+                    }catch (Exception e) {
+                        System.out.println("You already used that route today."+e);
+                    }
                     break;
                 case 4:
                     System.out.println("End day.");
