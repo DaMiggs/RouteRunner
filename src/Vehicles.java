@@ -14,19 +14,23 @@ public class Vehicles extends Animals{
     public static int truckCount=0;
     public static int suvCount=0;
     public static int vehicleCount=0;
-
+    public int  t;
+    public int trailerSize;
+    public int capacitySize;
 
 
     public void getVehicle() {
         String vehicle = vehicleList.get(new Random().nextInt(vehicleList.size()));
         System.out.println(vehicle+"\n");
         if (vehicle == "Compact") {
+            this.capacitySize = 2;
             compactCount++;
             for (int i=0; i < 2;i++){
                 getAnimal();
             }
         }
         if (vehicle == "Mid-size") {
+            this.capacitySize = 5;
             midsizeCount++;
             for (int i=0; i < 5;i++){
                 getAnimal();
@@ -36,16 +40,18 @@ public class Vehicles extends Animals{
             truckCount++;
             hasTrailer = random.nextBoolean();
             if (hasTrailer) {
-                int t = random.nextInt(2);
-                int trailerSize = trailerSizeList[t];
+                t = random.nextInt(2);
+                trailerSize = trailerSizeList[t];
                 System.out.println("Trailer size: " + trailerSize+"\n");
                 if (trailerSize == 2) {
+                    this.capacitySize = 6;
                     trailer2Count++;
                     for (int i = 0; i < 2; i++) {
                         getHorses();
                     }
                 }
                 else {
+                    this.capacitySize = 7;
                     getTrailer4Count++;
                     for (int i = 0; i < 4; i++) {
                         getHorses();
@@ -56,6 +62,7 @@ public class Vehicles extends Animals{
                 }
             }
             else {
+                this.capacitySize = 3;
                 for (int i=0; i < 3;i++){
                     getAnimal();
                 }
@@ -65,10 +72,11 @@ public class Vehicles extends Animals{
             suvCount++;
             hasTrailer = random.nextBoolean();
             if (hasTrailer) {
-                int t = random.nextInt(2);
-                int trailerSize = trailerSizeList[t];
+                t = random.nextInt(2);
+                trailerSize = trailerSizeList[t];
                 System.out.println("Trailer size: " + trailerSize+"\n");
                 if (trailerSize == 2) {
+                    this.capacitySize = 12;
                     trailer2Count++;
                     for (int i = 0; i < 2; i++) {
                         getHorses();
@@ -76,6 +84,7 @@ public class Vehicles extends Animals{
                 }
                 else {
                     getTrailer4Count++;
+                    this.capacitySize = 14;
                     for (int i = 0; i < 4; i++) {
                         getHorses();
                     }
@@ -85,6 +94,7 @@ public class Vehicles extends Animals{
                 }
             }
             else {
+                this.capacitySize = 10;
                 for (int i=0; i < 10;i++){
                     getAnimal();
                 }
@@ -92,5 +102,6 @@ public class Vehicles extends Animals{
         }
         vehicleCount++;
     }
-
+    public void vehicleSorting() {
+    }
 }

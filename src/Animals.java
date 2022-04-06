@@ -12,6 +12,7 @@ public class Animals {
     public static int catCount = 0;
     public static int horseCount = 0;
 
+
     public void getHorses() {
         animalCount++;
         horseCount++;

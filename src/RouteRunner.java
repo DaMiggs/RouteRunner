@@ -13,17 +13,19 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class RouteRunner {
+public class RouteRunner extends Caravans {
 
     public static Scanner scan = new Scanner(System.in);
     static String name;
+    public static int capacitySize;
 
     public static void main(String[] args) {
 
         Vehicles vehicles = new Vehicles();
         Caravans caravans = new Caravans();
+        Routes routes = new Routes();
         boolean begin = false;
-        int start = 0;
+        int start;
 
         System.out.println("Welcome to Route Runner!\nWhat is your name?");
         name = scan.nextLine();
@@ -45,36 +47,47 @@ public class RouteRunner {
                 case 2 -> endProgram();
             }
         }
-            System.out.println("Hey " + name + "! The first vehicle just pulled up.\nWhat do you want to do with it?\n");
-            while (begin) {
-                System.out.println("1: See new vehicle.\n2: Add to caravan.\n3: Quit game.\n");
-                int choice = scan.nextInt();
-                switch (choice) {
-                    case 1:
-                        try {
-                            caravans.addCaravan();
-                        } catch (Exception e) {
-                            System.out.println("You've reached the caravan limit!");
-                        }
-                        break;
-                    case 2:
-                        vehicles.getVehicle();
-                        break;
-                    case 3:
-                        endProgram();
-                }
+        System.out.println("Hey " + name + "! The first new vehicle just pulled up.\nWhat do you want to do with it?\n");
+        while (begin) {
+            System.out.println("1: See new vehicle.\n2: Add to caravan.\n3: Send Caravan\n4: End Day\n5: Quit game.\n");
+            int choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    vehicles.getVehicle();
+                    System.out.println(vehicles.capacitySize+"\n");
+                    capacitySize = vehicles.capacitySize;
+                    break;
+                case 2:
+                    try {
+                        caravans.addCaravan(capacitySize);
+                    } catch (Exception e) {
+                        System.out.println("You've reached the caravan limit!");
+                    }
+                    break;
+                case 3:
+
+                    caravans.sendIt();
+                    break;
+                case 4:
+                    System.out.println("End day.");
+                    break;
+                case 5:
+                    endProgram();
             }
+        }
     }
 
 
 
-        /*System.out.println("\n"+ Animals.animalCount +"\n"+ Animals.dogCount +"\n"+ Animals.catCount +"\n" + Animals.horseCount);
-        System.out.println("\n"+ Vehicles.compactCount +"\n"+Vehicles.midsizeCount+"\n"+Vehicles.truckCount+"\n"+
-        Vehicles.suvCount+"\n"+Vehicles.trailer2Count+"\n"+Vehicles.getTrailer4Count);*/
-
-
     static void quitProgram() {
-        System.out.println("Goodbye " + name + "!");
+        System.out.println("Your Stats:\nVolunteer Name: "+name);
+        System.out.println("\nTotal Animals:"+ Animals.animalCount +"\nTotal Dogs: "+ Animals.dogCount +"\nTotal Cats: "+
+                Animals.catCount +"\nTotal Horses: " + Animals.horseCount+"\nTotal Saved Animals: " /*+ Vehicles.savedCount*/);
+        System.out.println("\nTotal Compact: "+ Vehicles.compactCount +"\nTotal Midsize: "+Vehicles.midsizeCount+
+                "\nTotal Trucks: "+Vehicles.truckCount+"\nTotal SUV: "+ Vehicles.suvCount+"\nTotal Double Trailer: "+
+                Vehicles.trailer2Count+"\nTotal Quad Trailers: "+Vehicles.getTrailer4Count);
+        System.out.println("\nTotal Caravans: "+ Caravans.totlCrvnCnt + "\nTotal Compact: "+ Vehicles.compactCount  );
+        System.out.println("\nGoodbye " + name + "!");
         System.exit(0);
     }
 

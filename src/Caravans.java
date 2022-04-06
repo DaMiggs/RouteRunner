@@ -1,26 +1,77 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Caravans extends Vehicles {
 
+    Scanner scan = new Scanner(System.in);
     public ArrayList<ArrayList<String>> CaravanLists = new ArrayList<>();
-   /* private ArrayList<String> Caravan1 = new ArrayList<>();
-    private ArrayList<String> Caravan2 = new ArrayList<>();
-    private ArrayList<String> Caravan3 = new ArrayList<>();*/
+    private ArrayList<Integer> Caravan1 = new ArrayList<>();
+    private ArrayList<Integer> Caravan2 = new ArrayList<>();
+    private ArrayList<Integer> Caravan3 = new ArrayList<>();
     public static int totlCrvnCnt;
     public static int crvnFailCnt;
+    public int capacitySize;
 
-    public void addCaravan() throws CaravanException {
+
+    public void addCaravan(int capacitySize) throws CaravanException {
         if (CaravanLists.size() == 3)  {
             throw new CaravanException("You already have " + CaravanLists.size() + " caravans.");
         }
         else {
-            CaravanLists.add(new ArrayList<>());
-            totlCrvnCnt++;
-            System.out.println("Caravan created! You now have " + CaravanLists.size() + " caravans.");
+            System.out.println("Add to Caravan 1.\nAdd to Caravan 2.\nAdd to Caravan 3.\nCreate new caravan.");
+            int addToChoice = scan.nextInt();
+            switch (addToChoice) {
+                case 1:
+                    Caravan1.add(capacitySize);
+                    System.out.println(capacitySize);
+                    System.out.println("Caravan added! You now have " + Caravan1.size() + " vehicles in Caravan 1.");
+                    System.out.println(Caravan1);
+                    break;
+                case 2:
+                    Caravan2.add(capacitySize);
+                    System.out.println("Caravan added! You now have " + Caravan2.size() + " vehicles in Caravan 2.");
+                    System.out.println(Caravan2);
+
+                    break;
+                case 3:
+                    Caravan3.add(capacitySize);
+                    System.out.println("Caravan added! You now have " + Caravan3.size() + " vehicles in Caravan 3.");
+                    System.out.println(Caravan3);
+                    break;
+                case 4:
+                    //CaravanLists.add();
+                    CaravanLists.add(new ArrayList<>());
+                    totlCrvnCnt++;
+                    System.out.println("Caravan created! You now have " + CaravanLists.size() + " caravans.");
+                    break;
+            }
+
         }
     }
-    class Routes {
+
+    public void sendIt() {
+        System.out.println("1.) Send Caravan 1.");
+        System.out.println("2.) Send Caravan 2.");
+        System.out.println("3.) Send Caravan 3.");
+        System.out.println("4.) Return to menu.");
+        switch (RouteRunner.scan.nextInt()) {
+            case 1:
+                //caravanarrayn sorted and matched against route classlist
+                System.out.println(Caravan1.size());
+                System.out.println(Caravan1);
+            case 2:
+            case 3:
+            case 4:
+                break;
+
+        }
+    }
+
+    public void sortedCaravan() {
+    }
+
+    static class Routes {
 
             Random rando = new Random(); //initializing the "rando" variable with random class
             private float passRate = rando.nextFloat();
